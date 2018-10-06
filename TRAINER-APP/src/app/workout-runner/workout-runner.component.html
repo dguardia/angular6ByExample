@@ -1,0 +1,25 @@
+<div class="row pt-4">
+    <div id="description-panel" class="col-sm-3">
+        <abe-exercise-description 
+            [description]="currentExercise.exercise.description"
+            [steps]="currentExercise.exercise.procedure"></abe-exercise-description>
+    </div>
+    <div id="exercise-pane" class="col-sm">
+        <h1 class="text-center">{{currentExercise.exercise.title}}</h1>
+        <div class="image-container row">
+            <img alt="{{currentExercise.exercise.title}}" class="img-fluid col-sm" [src]="'/assets/images/' + currentExercise.exercise.image" />
+        </div>
+        <div class="progress time-progress row">
+            <div class="progress-bar" role="progressbar" 
+            aria-valuemin="0"
+            aria-valuenow="0"
+            [attr.aria-valuenow]="exerciseRunningDuration"
+            [attr.aria-valuemax]="currentExercise.duration"
+            [ngStyle]="{width: (exerciseRunningDuration/currentExercise.duration) * 100 + '%'}"></div>
+        </div>
+        <h3>Time Remaining: {{currentExercise.duration-exerciseRunningDuration}}</h3>
+    </div>
+    <div id="video-panel" class="col-sm-3">
+        <abe-video-player [videos]="currentExercise.exercise.videos"></abe-video-player>
+    </div>
+</div>
